@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "influencers",
+  "info": {
+    "singularName": "influencer",
+    "pluralName": "influencers",
+    "displayName": "Influencer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "FirebaseUID": {
+      "type": "uid"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "crypto",
+        "education",
+        "entertainment",
+        "gaming",
+        "tech",
+        "lifestyle",
+        "finance"
+      ]
+    },
+    "XUsername": {
+      "type": "string"
+    },
+    "XFollowers": {
+      "type": "integer"
+    },
+    "Verified": {
+      "type": "boolean"
+    },
+    "Featured": {
+      "type": "boolean"
+    },
+    "Online": {
+      "type": "boolean"
+    }
+  }
+}
