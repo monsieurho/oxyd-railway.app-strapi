@@ -4,7 +4,8 @@
   "info": {
     "singularName": "influencer",
     "pluralName": "influencers",
-    "displayName": "Influencer"
+    "displayName": "Influencer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -52,6 +53,14 @@
     },
     "Online": {
       "type": "boolean"
+    },
+    "Avatar": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

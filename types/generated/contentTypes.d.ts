@@ -6,6 +6,7 @@ export interface ApiInfluencerInfluencer extends Struct.CollectionTypeSchema {
     singularName: 'influencer';
     pluralName: 'influencers';
     displayName: 'Influencer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -32,6 +33,7 @@ export interface ApiInfluencerInfluencer extends Struct.CollectionTypeSchema {
     Verified: Schema.Attribute.Boolean;
     Featured: Schema.Attribute.Boolean;
     Online: Schema.Attribute.Boolean;
+    Avatar: Schema.Attribute.Media<'images' | 'files'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
