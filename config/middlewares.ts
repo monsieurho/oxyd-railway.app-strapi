@@ -13,6 +13,8 @@ export default [
             "data:",
             "blob:",
             "storage.googleapis.com",
+            "firebasestorage.googleapis.com",
+            "*.googleapis.com",
             "dl.airtable.com",
           ],
           "media-src": [
@@ -20,6 +22,8 @@ export default [
             "data:",
             "blob:",
             "storage.googleapis.com",
+            "firebasestorage.googleapis.com",
+            "*.googleapis.com",
             "dl.airtable.com",
           ],
           upgradeInsecureRequests: null,
