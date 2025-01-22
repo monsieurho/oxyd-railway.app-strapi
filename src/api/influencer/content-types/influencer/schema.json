@@ -65,6 +65,9 @@
     },
     "Rating": {
       "type": "decimal"
+    },
+    "StealthMode": {
+      "type": "boolean"
     }
   }
 }

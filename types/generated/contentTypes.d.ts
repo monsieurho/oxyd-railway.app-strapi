@@ -35,6 +35,7 @@ export interface ApiInfluencerInfluencer extends Struct.CollectionTypeSchema {
     Online: Schema.Attribute.Boolean;
     Avatar: Schema.Attribute.Media<'images' | 'files'>;
     Rating: Schema.Attribute.Decimal;
+    StealthMode: Schema.Attribute.Boolean;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
