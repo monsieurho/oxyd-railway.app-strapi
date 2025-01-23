@@ -1,57 +1,5 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
-export interface ApiInfluencerInfluencer extends Struct.CollectionTypeSchema {
-  collectionName: 'influencers';
-  info: {
-    singularName: 'influencer';
-    pluralName: 'influencers';
-    displayName: 'Influencer';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Name: Schema.Attribute.String;
-    Slug: Schema.Attribute.UID;
-    Email: Schema.Attribute.Email;
-    FirebaseUID: Schema.Attribute.UID;
-    Description: Schema.Attribute.Text;
-    Category: Schema.Attribute.Enumeration<
-      [
-        'crypto',
-        'education',
-        'entertainment',
-        'gaming',
-        'tech',
-        'lifestyle',
-        'finance',
-      ]
-    >;
-    XUsername: Schema.Attribute.String;
-    XFollowers: Schema.Attribute.Integer;
-    Verified: Schema.Attribute.Boolean;
-    Featured: Schema.Attribute.Boolean;
-    Online: Schema.Attribute.Boolean;
-    Avatar: Schema.Attribute.Media<'images' | 'files'>;
-    Rating: Schema.Attribute.Decimal;
-    StealthMode: Schema.Attribute.Boolean;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::influencer.influencer'
-    > &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -547,6 +495,110 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiInfluencerInfluencer extends Struct.CollectionTypeSchema {
+  collectionName: 'influencers';
+  info: {
+    singularName: 'influencer';
+    pluralName: 'influencers';
+    displayName: 'Influencer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Schema.Attribute.String;
+    Slug: Schema.Attribute.UID;
+    Email: Schema.Attribute.Email;
+    FirebaseUID: Schema.Attribute.UID;
+    Description: Schema.Attribute.Text;
+    Category: Schema.Attribute.Enumeration<
+      [
+        'crypto',
+        'education',
+        'entertainment',
+        'gaming',
+        'tech',
+        'lifestyle',
+        'finance',
+      ]
+    >;
+    XUsername: Schema.Attribute.String;
+    XFollowers: Schema.Attribute.Integer;
+    Verified: Schema.Attribute.Boolean;
+    Featured: Schema.Attribute.Boolean;
+    Online: Schema.Attribute.Boolean;
+    Avatar: Schema.Attribute.Media<'images' | 'files'>;
+    Rating: Schema.Attribute.Decimal;
+    StealthMode: Schema.Attribute.Boolean;
+    TelegramUsername: Schema.Attribute.String;
+    TelegramSubscribers: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::influencer.influencer'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProfileProfile extends Struct.CollectionTypeSchema {
+  collectionName: 'profiles';
+  info: {
+    singularName: 'profile';
+    pluralName: 'profiles';
+    displayName: 'Profile';
+    description: 'User profiles with multiple authentication providers';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    FirebaseUID: Schema.Attribute.UID &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    displayName: Schema.Attribute.String & Schema.Attribute.Required;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Private &
+      Schema.Attribute.Unique;
+    lastLogin: Schema.Attribute.DateTime & Schema.Attribute.Private;
+    avatar: Schema.Attribute.Media<'images'>;
+    xProfile: Schema.Attribute.Component<'social.x-profile', false>;
+    googleProfile: Schema.Attribute.Component<'social.google-profile', false>;
+    telegramProfile: Schema.Attribute.Component<
+      'social.telegram-profile',
+      false
+    >;
+    wallet: Schema.Attribute.Component<'crypto.wallet', true>;
+    influencer: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::influencer.influencer'
+    >;
+    lastSeen: Schema.Attribute.DateTime;
+    isOnline: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile.profile'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -919,7 +971,6 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
-      'api::influencer.influencer': ApiInfluencerInfluencer;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -930,6 +981,8 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::influencer.influencer': ApiInfluencerInfluencer;
+      'api::profile.profile': ApiProfileProfile;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

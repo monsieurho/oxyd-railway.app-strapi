@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_crypto_wallets",
+  "info": {
+    "displayName": "Wallet",
+    "description": "Cryptocurrency wallet information",
+    "icon": "wallet"
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "chain": {
+      "type": "enumeration",
+      "enum": ["ethereum", "polygon", "binance", "solana", "bitcoin"],
+      "required": true
+    },
+    "isDefault": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

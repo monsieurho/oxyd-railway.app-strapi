@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_social_google_profiles",
+  "info": {
+    "displayName": "Google Profile",
+    "description": "Google social profile information",
+    "icon": "google"
+  },
+  "options": {},
+  "attributes": {
+    "googleId": {
+      "type": "string",
+      "required": true
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "photoUrl": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    }
+  }
+}

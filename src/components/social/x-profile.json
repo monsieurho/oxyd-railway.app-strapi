@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_social_x_profiles",
+  "info": {
+    "displayName": "X Profile",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "handle": {
+      "type": "string",
+      "required": true
+    },
+    "profileId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "photoUrl": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "profiles",
+  "info": {
+    "singularName": "profile",
+    "pluralName": "profiles",
+    "displayName": "Profile",
+    "description": "User profiles with multiple authentication providers"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "FirebaseUID": {
+      "type": "uid",
+      "required": true,
+      "unique": true
+    },
+    "displayName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "unique": true,
+      "private": true
+    },
+    "lastLogin": {
+      "type": "datetime",
+      "private": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "xProfile": {
+      "type": "component",
+      "component": "social.x-profile",
+      "repeatable": false
+    },
+    "googleProfile": {
+      "type": "component",
+      "component": "social.google-profile",
+      "repeatable": false
+    },
+    "telegramProfile": {
+      "type": "component",
+      "component": "social.telegram-profile",
+      "repeatable": false
+    },
+    "wallet": {
+      "type": "component",
+      "component": "crypto.wallet",
+      "repeatable": true
+    },
+    "influencer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::influencer.influencer"
+    },
+    "lastSeen": {
+      "type": "datetime"
+    },
+    "isOnline": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

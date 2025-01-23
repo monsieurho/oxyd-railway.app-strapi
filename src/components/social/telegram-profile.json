@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_social_telegram_profiles",
+  "info": {
+    "displayName": "Telegram Profile",
+    "description": "Telegram profile information",
+    "icon": "message-circle"
+  },
+  "options": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "required": true
+    },
+    "telegramId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "photoUrl": {
+      "type": "string"
+    }
+  }
+}
