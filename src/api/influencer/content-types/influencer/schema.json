@@ -68,6 +68,12 @@
     },
     "StealthMode": {
       "type": "boolean"
+    },
+    "TelegramUsername": {
+      "type": "string"
+    },
+    "TelegramSubscribers": {
+      "type": "integer"
     }
   }
 }
