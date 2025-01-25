@@ -1,22 +1,5 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
-export interface CryptoWallet extends Struct.ComponentSchema {
-  collectionName: 'components_crypto_wallets';
-  info: {
-    displayName: 'Wallet';
-    description: 'Cryptocurrency wallet information';
-    icon: 'wallet';
-  };
-  attributes: {
-    address: Schema.Attribute.String & Schema.Attribute.Required;
-    chain: Schema.Attribute.Enumeration<
-      ['ethereum', 'polygon', 'binance', 'solana', 'bitcoin']
-    > &
-      Schema.Attribute.Required;
-    isDefault: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-  };
-}
-
 export interface SocialXProfile extends Struct.ComponentSchema {
   collectionName: 'components_social_x_profiles';
   info: {
@@ -61,13 +44,30 @@ export interface SocialGoogleProfile extends Struct.ComponentSchema {
   };
 }
 
+export interface CryptoWallet extends Struct.ComponentSchema {
+  collectionName: 'components_crypto_wallets';
+  info: {
+    displayName: 'Wallet';
+    description: 'Cryptocurrency wallet information';
+    icon: 'wallet';
+  };
+  attributes: {
+    address: Schema.Attribute.String & Schema.Attribute.Required;
+    chain: Schema.Attribute.Enumeration<
+      ['ethereum', 'polygon', 'binance', 'solana', 'bitcoin']
+    > &
+      Schema.Attribute.Required;
+    isDefault: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'crypto.wallet': CryptoWallet;
       'social.x-profile': SocialXProfile;
       'social.telegram-profile': SocialTelegramProfile;
       'social.google-profile': SocialGoogleProfile;
+      'crypto.wallet': CryptoWallet;
     }
   }
 }
