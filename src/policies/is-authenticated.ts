@@ -7,7 +7,7 @@ import type { Context } from "koa";
 
 export default async (policyContext: Context, config, { strapi }) => {
   try {
-    // Get the Firebase token from the Authorization header
+    // Get the token from the Authorization header
     const token = policyContext.request.header.authorization?.replace(
       "Bearer ",
       ""
@@ -17,11 +17,9 @@ export default async (policyContext: Context, config, { strapi }) => {
       return false;
     }
 
+    // First try to verify as Firebase token
     try {
-      // Verify the Firebase token
       const decodedToken = await getAuth().verifyIdToken(token);
-
-      // Add the verified user data to the context state
       policyContext.state.user = decodedToken;
 
       // Update last login time in profile
@@ -38,8 +36,18 @@ export default async (policyContext: Context, config, { strapi }) => {
       }
 
       return true;
-    } catch (error) {
-      console.error("Firebase token verification failed:", error);
+    } catch (firebaseError) {
+      // If Firebase verification fails, check if it's a valid Strapi token
+      try {
+        if (token === process.env.STRAPI_TOKEN) {
+          policyContext.state.user = { type: "strapi-api" };
+          return true;
+        }
+      } catch (strapiError) {
+        console.error("Strapi token verification failed:", strapiError);
+      }
+
+      console.error("Firebase token verification failed:", firebaseError);
       return false;
     }
   } catch (error) {
